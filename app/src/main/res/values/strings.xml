@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">NeverLose</string>
+    <string name="updated_date">更新日：%1$s</string>
+    <string name="today">今日</string>
+    <string name="yesterday">昨日</string>
+    <string name="daysago">%1$d日前</string>
+    <string name="failed_to_open_evernote">Evernoteを開くことができませんでした</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="authentication_required">認証が必要です</string>
+    <string name="failed_to_fetch_notes">ノートが取得できませんでした</string>
+    <string name="failed_to_login">ログインできませんでした</string>
+    <string name="try_again">リトライ</string>
+    <string name="welcome">Never Lose へようこそ</string>
+    <string name="login">Evernoteと連携する</string>
+    <string name="no_notes">ノートがありません</string>
+    <string name="see_detail">詳細を見る</string>
+    <string name="edit">編集する</string>
+</resources>
