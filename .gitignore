@@ -85,3 +85,5 @@ lint/tmp/
 
 # DS.store
 *.DS_Store
+
+.idea/misc.xml
