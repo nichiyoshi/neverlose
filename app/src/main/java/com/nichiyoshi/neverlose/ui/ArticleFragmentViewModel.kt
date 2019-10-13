@@ -1,6 +1,5 @@
 package com.nichiyoshi.neverlose.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +11,7 @@ import com.evernote.edam.error.EDAMUserException
 import com.evernote.edam.notestore.NoteList
 import com.nichiyoshi.neverlose.domain.EVNoteFilter
 import com.nichiyoshi.neverlose.domain.EVNoteResult
+import com.nichiyoshi.neverlose.util.LogUtil
 import com.squareup.okhttp.Response
 import java.lang.Exception
 
@@ -32,7 +32,7 @@ class ArticleFragmentViewModel: ViewModel() {
 
         noteStoreClient.findNotesAsync(filter, 0, 50, object: EvernoteCallback<NoteList> {
             override fun onSuccess(notes: NoteList?) {
-                Log.d(tag, "success, and result count is ${notes?.notesSize}")
+                LogUtil.d(tag, "success, and result count is ${notes?.notesSize}")
 
                 notes?.notesSize?.apply {
                     if (this == 0) {
@@ -52,7 +52,7 @@ class ArticleFragmentViewModel: ViewModel() {
                         override fun onException(exception: Exception?) {
                             if(exception is EDAMUserException){
                                 if(exception.errorCode == EDAMErrorCode.AUTH_EXPIRED){
-                                    Log.e(tag, "auth is expired", exception)
+                                    LogUtil.e(tag, "auth is expired", exception)
                                     EvernoteSession.getInstance().logOut()
                                 }
                             }
@@ -63,10 +63,10 @@ class ArticleFragmentViewModel: ViewModel() {
             }
 
             override fun onException(exception: Exception?) {
-                Log.e(tag, "failed to get articles", exception)
+                LogUtil.e(tag, "failed to get articles", exception)
                 if(exception is EDAMUserException){
                     if(exception.errorCode == EDAMErrorCode.AUTH_EXPIRED){
-                        Log.e(tag, "auth is expired", exception)
+                        LogUtil.e(tag, "auth is expired", exception)
                         EvernoteSession.getInstance().logOut()
                     }
                 }

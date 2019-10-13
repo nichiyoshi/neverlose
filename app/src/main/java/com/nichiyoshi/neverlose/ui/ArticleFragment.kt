@@ -1,7 +1,6 @@
 package com.nichiyoshi.neverlose.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import com.nichiyoshi.neverlose.domain.FetchNoteError
 import com.nichiyoshi.neverlose.domain.EVNoteFilter
 import com.nichiyoshi.neverlose.domain.EVNoteResult
 import com.google.android.material.snackbar.Snackbar
+import com.nichiyoshi.neverlose.util.LogUtil
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.lang.Exception
 
@@ -24,6 +24,8 @@ class ArticleFragment : Fragment() {
     companion object {
 
         const val KEY_FILTER = "KEY_FILTER"
+
+        private val TAG = this::class.java.simpleName
 
         @JvmStatic
         fun newInstance(filter: EVNoteFilter): ArticleFragment {
@@ -68,11 +70,11 @@ class ArticleFragment : Fragment() {
                             Snackbar.make(view?:return@observe, R.string.authentication_required, Snackbar.LENGTH_SHORT).show()
                         }
                         is FetchNoteError.RateLimitReachedError -> {
-                            Log.e(tag, it.error.message)
+                            LogUtil.e(TAG, it.error.message)
                             Snackbar.make(view?:return@observe, it.error.message, Snackbar.LENGTH_LONG).show()
                         }
                         is FetchNoteError.OtherError -> {
-                            Log.e(tag, it.error.error.message)
+                            LogUtil.e(TAG, it.error.error.message)
                             Snackbar.make(view?:return@observe, R.string.failed_to_fetch_notes, Snackbar.LENGTH_SHORT).show()
                         }
                     }
@@ -88,11 +90,11 @@ class ArticleFragment : Fragment() {
                             Snackbar.make(view?:return@observe, R.string.authentication_required, Snackbar.LENGTH_SHORT).show()
                         }
                         is FetchNoteError.RateLimitReachedError -> {
-                            Log.e(tag, it.error.message)
+                            LogUtil.e(TAG, it.error.message)
                             Snackbar.make(view?:return@observe, it.error.message, Snackbar.LENGTH_LONG).show()
                         }
                         is FetchNoteError.OtherError -> {
-                            Log.e(tag, it.error.error.message)
+                            LogUtil.e(TAG, it.error.error.message)
                             Snackbar.make(view?:return@observe, R.string.failed_to_fetch_notes, Snackbar.LENGTH_SHORT).show()
                         }
                     }

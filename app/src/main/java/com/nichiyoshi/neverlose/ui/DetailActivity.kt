@@ -3,7 +3,6 @@ package com.nichiyoshi.neverlose.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
@@ -13,6 +12,7 @@ import com.nichiyoshi.neverlose.domain.EVNoteResult
 import com.nichiyoshi.neverlose.domain.UserResult
 import com.nichiyoshi.neverlose.domain.convertToTime
 import com.google.android.material.snackbar.Snackbar
+import com.nichiyoshi.neverlose.util.LogUtil
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_detail.my_toolbar
 
@@ -58,7 +58,7 @@ class DetailActivity: AppCompatActivity() {
                         val url = viewModel.getEvernoteUserUrlWithGUID(article.guid, it.user)
                         val intent = Intent(Intent.ACTION_VIEW, url)
                         startActivity(intent)
-                    }?: Log.e(this::class.java.simpleName, "failed to get article")
+                    }?: LogUtil.e(this::class.java.simpleName, "failed to get article")
                     progress_bar.hide()
                 }
                 is UserResult.Fail -> {

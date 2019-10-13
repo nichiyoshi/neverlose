@@ -3,7 +3,6 @@ package com.nichiyoshi.neverlose.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +10,7 @@ import androidx.lifecycle.observe
 import com.nichiyoshi.neverlose.R
 import com.nichiyoshi.neverlose.domain.*
 import com.google.android.material.snackbar.Snackbar
+import com.nichiyoshi.neverlose.util.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.drawer_layout.*
 
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.noteCount.observe(this){
             when(it){
                 is NoteCount.Success -> {
-                    Log.d(tag, "note count: ${it.size}, index: ${it.filter.index}")
+                    LogUtil.d(tag, "note count: ${it.size}, index: ${it.filter.index}")
                     tabs.updateBatch(Batch(it.size), it.filter.index)
                 }
                 is NoteCount.Fail -> {
@@ -84,11 +84,11 @@ class MainActivity : AppCompatActivity() {
                             Snackbar.make(content?:return@observe, R.string.authentication_required, Snackbar.LENGTH_SHORT).show()
                         }
                         is FetchNoteError.RateLimitReachedError -> {
-                            Log.e(tag, it.error.message)
+                            LogUtil.e(tag, it.error.message)
                             Snackbar.make(content?:return@observe, it.error.message, Snackbar.LENGTH_LONG).show()
                         }
                         is FetchNoteError.OtherError -> {
-                            Log.e(tag, it.error.error.message)
+                            LogUtil.e(tag, it.error.error.message)
                             Snackbar.make(content?:return@observe, R.string.failed_to_fetch_notes, Snackbar.LENGTH_SHORT).show()
                         }
                     }

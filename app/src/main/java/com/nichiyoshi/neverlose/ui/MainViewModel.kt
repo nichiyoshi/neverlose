@@ -1,6 +1,5 @@
 package com.nichiyoshi.neverlose.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.evernote.edam.error.EDAMUserException
 import com.evernote.edam.notestore.NoteList
 import com.nichiyoshi.neverlose.domain.EVNoteFilter
 import com.nichiyoshi.neverlose.domain.NoteCount
+import com.nichiyoshi.neverlose.util.LogUtil
 import java.lang.Exception
 
 class MainViewModel: ViewModel() {
@@ -44,7 +44,7 @@ class MainViewModel: ViewModel() {
 
         noteStoreClient.findNotesAsync(filter, 0, 50, object: EvernoteCallback<NoteList> {
             override fun onSuccess(notes: NoteList?) {
-                Log.d(tag, "success, and result count is ${notes?.notesSize}")
+                LogUtil.d(tag, "success, and result count is ${notes?.notesSize}")
 
                 notes?.notesSize?.apply {
                     mutableNoteCount.postValue(NoteCount.Success(this, filter))
@@ -52,10 +52,10 @@ class MainViewModel: ViewModel() {
             }
 
             override fun onException(exception: Exception?) {
-                Log.e(tag, "failed to get noteCount", exception)
+                LogUtil.e(tag, "failed to get noteCount", exception)
                 if(exception is EDAMUserException){
                     if(exception.errorCode == EDAMErrorCode.AUTH_EXPIRED){
-                        Log.e(tag, "auth is expired", exception)
+                        LogUtil.e(tag, "auth is expired", exception)
                         EvernoteSession.getInstance().logOut()
                     }
                 }
