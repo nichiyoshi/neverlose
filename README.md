@@ -1,17 +1,11 @@
-# Never Lose
+# NeverLose 忘れない
 
-NOTE: **THIS APP IS STILL IN DEVELOPPMENT**
+Evernoteで記録したことを忘れないためのAndroidアプリ
 
-## What is this app?
+<img width="222" alt="スクリーンショット 2019-10-18 0 41 07" src="https://user-images.githubusercontent.com/40135056/67025065-5c490100-f140-11e9-967e-18818cb30954.png">   <img width="232" alt="スクリーンショット 2019-10-18 0 41 40" src="https://user-images.githubusercontent.com/40135056/67025067-5c490100-f140-11e9-97ce-f05126208600.png">
 
-NeverLose lists notes from Evernote, which are created/updated today, yesterday, 8 days ago, 22 days ago, and 52 days ago.
 
-## Why this app?
+![QR](https://user-images.githubusercontent.com/40135056/67024719-d75de780-f13f-11e9-8cbb-33bdcf4d187d.png)
 
-You know we easily forget things.
-This app is aimed to help such people with Evernote, on the basis of **Forgetting curve**
+[Play Store](https://play.google.com/store/apps/details?id=com.nichiyoshi.neverlose)
 
-## How to use?
-
-You just create notes on Evernote app.
-Then, authenticate your Evernote account on this app and use this app everyday to remind youself the notes you've created/updated.
